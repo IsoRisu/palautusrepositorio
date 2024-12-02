@@ -3,22 +3,17 @@ OLETUSKASVATUS = 5
 
 
 class IntJoukko:
-    # tämä metodi on ainoa tapa luoda listoja
-    def _luo_lista(self, koko):
-        return [0] * koko
     
     def __init__(self, kapasiteetti=None, kasvatuskoko=None):
+
+
         if kapasiteetti is None:
             self.kapasiteetti = KAPASITEETTI
-        elif not isinstance(kapasiteetti, int) or kapasiteetti < 0:
-            raise Exception("Väärä kapasiteetti")  # heitin vaan jotain :D
         else:
             self.kapasiteetti = kapasiteetti
 
         if kasvatuskoko is None:
             self.kasvatuskoko = OLETUSKASVATUS
-        elif not isinstance(kapasiteetti, int) or kapasiteetti < 0:
-            raise Exception("kapasiteetti2")  # heitin vaan jotain :D
         else:
             self.kasvatuskoko = kasvatuskoko
 
@@ -26,20 +21,22 @@ class IntJoukko:
 
         self.alkioiden_lkm = 0
 
+
+
+    # tämä metodi on ainoa tapa luoda listoja
+    def _luo_lista(self, koko):
+        return [0] * koko
+
+    
     def kuuluu(self, n):
-        on = 0
 
         for i in range(0, self.alkioiden_lkm):
             if n == self.ljono[i]:
-                on = on + 1
+                return True
 
-        if on > 0:
-            return True
-        else:
-            return False
+        return False
 
     def lisaa(self, n):
-        ei_ole = 0
 
         if self.alkioiden_lkm == 0:
             self.ljono[0] = n
